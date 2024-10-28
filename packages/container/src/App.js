@@ -5,10 +5,12 @@ import { BrowserRouter } from "react-router-dom";
 
 export default () => {
     return (
-        <div>
-            <Header/>
-            <MarketingApp/>
-        </div>
+        <BrowserRouter>
+            <div>
+                <Header/>
+                <MarketingApp/>
+            </div>
+        </BrowserRouter>
         
     )
 }
