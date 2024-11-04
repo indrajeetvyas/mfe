@@ -8,10 +8,10 @@ const packageJSON = require('../package.json');
 const devConfig = {
     mode: 'development',
     output: {
-        publicPath: 'http://localhost:8081/'
+        publicPath: 'http://localhost:8082/'
     },
     devServer: {
-        port: 8081,
+        port: 8082,
         historyApiFallback: {
             index: '/index.html'
         }
@@ -21,14 +21,14 @@ const devConfig = {
             template: './public/index.html'
         }),
         new ModuleFederationPlugin({
-            name: 'marketing',
+            name: 'auth',
             filename: 'remoteEntry.js',
             exposes: {
-                './MarketingApp': './src/bootstrap.js'
+                './AuthApp': './src/bootstrap.js',
             },
             shared: packageJSON.dependencies
         })
     ]
 };
 
-module.exports = merge(commonConfig, devConfig);
+module.exports = merge(commonConfig, devConfig)

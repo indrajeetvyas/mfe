@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
 import ReactDOM from 'react-dom'
-//import { createRoot } from 'react-dom/client';
-import App from './App'
-import { createMemoryHistory, createBrowserHistory } from 'history';
+import App from "./App";
 
-const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
+import {createBrowserHistory, createMemoryHistory} from 'history';
+
+
+const mount = (el, { onNavigate, defaultHistory, initialPath, onSignin }) => {
     const history = defaultHistory || createMemoryHistory({
         initialEntries: [initialPath]
     });
@@ -15,7 +16,7 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
     //const root = createRoot(el)
     ReactDOM.render(
         <React.StrictMode>
-            <App history={history} />
+            <App history={history} onSignin={onSignin} />
         </React.StrictMode>,
         el
     );
@@ -33,7 +34,7 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
 };
 
 if (process.env.NODE_ENV === 'development') {
-    const el = document.querySelector('#_marketing-development-root');
+    const el = document.querySelector('#_auth_dev_root');
     if (el) {
         mount(el, {defaultHistory: createBrowserHistory()});
     }
